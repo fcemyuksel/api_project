@@ -1,5 +1,6 @@
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Test;
 
@@ -23,6 +24,9 @@ status code’unun 200,
 ve content type’inin application/json; charset=utf-8,
 ve Server isimli Header’in degerinin cloudflare,
 ve status Line’in HTTP/1.1 200 OK
+ve title'in "Ahmet"
+body attribute'nun "merhaba"
+ve userId'nin 10 oldugunu
          */
 
         //1- request hazirla: request body ve endpoint olustur
@@ -54,7 +58,10 @@ ve status Line’in HTTP/1.1 200 OK
                 .assertThat().statusCode(200)
                 .contentType("application/json; charset=utf-8")
                 .header("Server","cloudflare")
-                .statusLine("HTTP/1.1 200 OK");
+                .statusLine("HTTP/1.1 200 OK")
+                .body("title", Matchers.equalTo("Ahmet"))
+                .body("body",Matchers.equalTo("Merhaba"))
+                .body("userId", Matchers.equalTo(10));
 
     }
 }

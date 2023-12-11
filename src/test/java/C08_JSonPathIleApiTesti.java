@@ -60,7 +60,7 @@ oldugunu test edin
                          .when().body(requestBody.toString())
                           .post(endpoint);
 
-        // response.prettyPrint(); testlerde yazdirmaya gerek yoktur
+        response.prettyPrint(); // testlerde yazdirmaya gerek yoktur
         //4- istenen assertionlari yap
 
         response
